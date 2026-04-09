@@ -64,8 +64,8 @@ const Header = ({ onSearchOpen }: HeaderProps) => {
       <nav className="craft-container flex items-center justify-between h-16 md:h-20">
         {/* Logo */}
         <a href="#home" className="flex items-center gap-2">
-          <span className="text-xl md:text-2xl font-heading font-bold text-primary">
-            ✨ Crafted Wizard
+          <span className="text-xl md:text-2xl font-heading text-primary-foreground text-left font-extrabold">
+            ✨ GETINBEX.COM
           </span>
         </a>
 
