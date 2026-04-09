@@ -1,4 +1,3 @@
-import { memo } from "react";
 import { ArrowRight } from "lucide-react";
 import catDecor from "@/assets/cat-decor.jpg";
 import catCrafts from "@/assets/cat-crafts.jpg";
@@ -32,7 +31,7 @@ const cats = [
   },
 ];
 
-const CategoryCards = memo(() => (
+const CategoryCards = () => (
   <section id="categories" className="py-16 md:py-24 bg-muted/50">
     <div className="craft-container">
       <div className="text-center mb-12">
@@ -68,8 +67,6 @@ const CategoryCards = memo(() => (
       </div>
     </div>
   </section>
-));
-
-CategoryCards.displayName = "CategoryCards";
+);
 
 export default CategoryCards;

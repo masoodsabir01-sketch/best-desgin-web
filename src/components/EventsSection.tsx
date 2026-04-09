@@ -1,5 +1,3 @@
-import { memo } from "react";
-
 const events = [
   { emoji: "🎄", title: "Christmas", desc: "DIY decorations, ornaments, handmade gifts" },
   { emoji: "🎉", title: "New Year", desc: "Party DIYs, countdown crafts, decor" },
@@ -9,7 +7,7 @@ const events = [
   { emoji: "🌸", title: "Easter", desc: "Egg decorating, pastel crafts, baskets" },
 ];
 
-const EventsSection = memo(() => (
+const EventsSection = () => (
   <section id="events" className="py-16 md:py-24">
     <div className="craft-container">
       <div className="text-center mb-12">
@@ -34,8 +32,6 @@ const EventsSection = memo(() => (
       </div>
     </div>
   </section>
-));
-
-EventsSection.displayName = "EventsSection";
+);
 
 export default EventsSection;
