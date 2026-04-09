@@ -26,7 +26,7 @@ export const articles: Article[] = [
     excerpt: "Discover adorable polymer clay projects perfect for first-timers. From miniature animals to decorative bowls, these beginner-friendly ideas will spark your creativity.",
     category: "Crafts",
     image: articleClay,
-    date: "April 5, 2025",
+    date: "April 5, 2026",
     readTime: "8 min read",
     author: "Crafted Wizard",
     content: `<h2>Getting Started with Polymer Clay</h2>
@@ -54,7 +54,7 @@ export const articles: Article[] = [
     excerpt: "Create an eye-catching Rainbow Dash costume using simple materials you probably already have. Perfect for Halloween, cosplay events, or dress-up fun!",
     category: "DIY",
     image: articleRainbow,
-    date: "March 28, 2025",
+    date: "March 28, 2026",
     readTime: "10 min read",
     author: "Crafted Wizard",
     content: `<h2>Bringing Rainbow Dash to Life</h2>
@@ -76,11 +76,11 @@ export const articles: Article[] = [
   {
     id: "3",
     slug: "mehndi-designs-for-hands-2025",
-    title: "50+ Mehndi Designs for Hands 2025",
+    title: "50+ Mehndi Designs for Hands 2026",
     excerpt: "Explore stunning mehndi patterns from traditional bridal designs to modern minimalist styles. Step-by-step guides for every skill level.",
     category: "DIY",
     image: articleMehndi,
-    date: "March 20, 2025",
+    date: "March 20, 2026",
     readTime: "12 min read",
     author: "Crafted Wizard",
     content: `<h2>The Art of Mehndi Design</h2>
@@ -104,7 +104,7 @@ export const articles: Article[] = [
     excerpt: "Transform inexpensive dollar store finds into gorgeous holiday decorations. Budget-friendly ideas that look anything but cheap!",
     category: "Decor",
     image: articleChristmas,
-    date: "March 15, 2025",
+    date: "March 15,  2026",
     readTime: "7 min read",
     author: "Crafted Wizard",
     content: `<h2>Dollar Store Magic for the Holidays</h2>
@@ -127,7 +127,7 @@ export const articles: Article[] = [
     excerpt: "Learn to crochet adorable bookmarks with these easy-to-follow patterns. From simple strips to cute character designs, perfect for gifting.",
     category: "Crafts",
     image: articleCrochet,
-    date: "March 10, 2025",
+    date: "March 10, 2026",
     readTime: "9 min read",
     author: "Crafted Wizard",
     content: `<h2>Why Crochet Bookmarks?</h2>
@@ -151,7 +151,7 @@ export const articles: Article[] = [
     excerpt: "Create a powerful vision board that helps you manifest your goals. Tips on layout, imagery, and intention-setting for an effective board.",
     category: "DIY",
     image: articleVision,
-    date: "March 5, 2025",
+    date: "March 5, 2026",
     readTime: "6 min read",
     author: "Crafted Wizard",
     content: `<h2>The Science Behind Vision Boards</h2>
