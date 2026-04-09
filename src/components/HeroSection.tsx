@@ -1,10 +1,18 @@
+import { memo } from "react";
 import heroBg from "@/assets/hero-crafts.jpg";
 
-const HeroSection = () => {
+const HeroSection = memo(() => {
   return (
     <section id="home" className="relative min-h-[85vh] flex items-center overflow-hidden">
       <div className="absolute inset-0">
-        <img src={heroBg} alt="Craft supplies flat lay with yarn, scissors and flowers" width={1920} height={800} className="w-full h-full object-cover" />
+        <img
+          src={heroBg}
+          alt="Craft supplies flat lay with yarn, scissors and flowers"
+          width={1920}
+          height={800}
+          className="w-full h-full object-cover"
+          fetchPriority="high"
+        />
         <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
       </div>
       <div className="relative craft-container py-20 md:py-32">
@@ -33,6 +41,8 @@ const HeroSection = () => {
       </div>
     </section>
   );
-};
+});
+
+HeroSection.displayName = "HeroSection";
 
 export default HeroSection;

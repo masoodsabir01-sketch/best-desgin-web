@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { ArrowRight } from "lucide-react";
 import catDecor from "@/assets/cat-decor.jpg";
 import catCrafts from "@/assets/cat-crafts.jpg";
@@ -31,7 +32,7 @@ const cats = [
   },
 ];
 
-const CategoryCards = () => (
+const CategoryCards = memo(() => (
   <section id="categories" className="py-16 md:py-24 bg-muted/50">
     <div className="craft-container">
       <div className="text-center mb-12">
@@ -48,9 +49,10 @@ const CategoryCards = () => (
                 src={c.image}
                 alt={c.title}
                 loading="lazy"
+                decoding="async"
                 width={640}
                 height={512}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                className="w-full h-full object-cover will-change-transform group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-foreground/50 to-transparent" />
               <h3 className="absolute bottom-3 left-4 text-lg font-heading font-bold text-primary-foreground">{c.title}</h3>
@@ -66,6 +68,8 @@ const CategoryCards = () => (
       </div>
     </div>
   </section>
-);
+));
+
+CategoryCards.displayName = "CategoryCards";
 
 export default CategoryCards;
