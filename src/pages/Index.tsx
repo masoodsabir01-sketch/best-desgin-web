@@ -1,16 +1,50 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from "react";
+import Header from "@/components/Header";
+import HeroSection from "@/components/HeroSection";
+import CategoryCards from "@/components/CategoryCards";
+import EventsSection from "@/components/EventsSection";
+import ArticlesSection from "@/components/ArticlesSection";
+import SearchOverlay from "@/components/SearchOverlay";
+import ArticleModal from "@/components/ArticleModal";
+import Footer from "@/components/Footer";
+import type { Article } from "@/data/articles";
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
+const Index = () => {
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
+
+  const handleArticleClick = (article: Article) => {
+    setSelectedArticle(article);
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
+    <div className="min-h-screen bg-background">
+      <Header onSearchOpen={() => setSearchOpen(true)} />
+      <main>
+        <HeroSection />
+        <CategoryCards />
+        <EventsSection />
+        <ArticlesSection searchQuery={searchQuery} onArticleClick={handleArticleClick} />
+      </main>
+      <Footer />
+
+      <SearchOverlay
+        isOpen={searchOpen}
+        query={searchQuery}
+        onQueryChange={setSearchQuery}
+        onClose={() => setSearchOpen(false)}
+      />
+
+      {selectedArticle && (
+        <ArticleModal
+          article={selectedArticle}
+          onClose={() => setSelectedArticle(null)}
+          onArticleClick={handleArticleClick}
+        />
+      )}
     </div>
   );
 };
-
-const Index = PlaceholderIndex;
 
 export default Index;
