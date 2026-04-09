@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import CategoryCards from "@/components/CategoryCards";
@@ -14,13 +14,15 @@ const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
 
-  const handleArticleClick = (article: Article) => {
-    setSelectedArticle(article);
-  };
+  const handleSearchOpen = useCallback(() => setSearchOpen(true), []);
+  const handleSearchClose = useCallback(() => setSearchOpen(false), []);
+  const handleArticleClick = useCallback((article: Article) => setSelectedArticle(article), []);
+  const handleArticleClose = useCallback(() => setSelectedArticle(null), []);
+  const handleQueryChange = useCallback((q: string) => setSearchQuery(q), []);
 
   return (
     <div className="min-h-screen bg-background">
-      <Header onSearchOpen={() => setSearchOpen(true)} />
+      <Header onSearchOpen={handleSearchOpen} />
       <main>
         <HeroSection />
         <CategoryCards />
@@ -32,14 +34,14 @@ const Index = () => {
       <SearchOverlay
         isOpen={searchOpen}
         query={searchQuery}
-        onQueryChange={setSearchQuery}
-        onClose={() => setSearchOpen(false)}
+        onQueryChange={handleQueryChange}
+        onClose={handleSearchClose}
       />
 
       {selectedArticle && (
         <ArticleModal
           article={selectedArticle}
-          onClose={() => setSelectedArticle(null)}
+          onClose={handleArticleClose}
           onArticleClick={handleArticleClick}
         />
       )}
