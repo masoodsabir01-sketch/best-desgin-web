@@ -1,7 +1,6 @@
-import { memo } from "react";
 import heroBg from "@/assets/hero-crafts.jpg";
 
-const HeroSection = memo(() => {
+const HeroSection = () => {
   return (
     <section id="home" className="relative min-h-[85vh] flex items-center overflow-hidden">
       <div className="absolute inset-0">
@@ -11,7 +10,6 @@ const HeroSection = memo(() => {
           width={1920}
           height={800}
           className="w-full h-full object-cover"
-          fetchPriority="high"
         />
         <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
       </div>
@@ -41,8 +39,6 @@ const HeroSection = memo(() => {
       </div>
     </section>
   );
-});
-
-HeroSection.displayName = "HeroSection";
+};
 
 export default HeroSection;

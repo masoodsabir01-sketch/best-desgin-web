@@ -1,6 +1,4 @@
-import { memo } from "react";
-
-const Footer = memo(() => (
+const Footer = () => (
   <footer className="bg-foreground text-primary-foreground">
     <div className="craft-container py-12 md:py-16">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -45,8 +43,6 @@ const Footer = memo(() => (
       </div>
     </div>
   </footer>
-));
-
-Footer.displayName = "Footer";
+);
 
 export default Footer;

@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo, memo } from "react";
+import { useState, useCallback, useMemo } from "react";
 import { articles, categories } from "@/data/articles";
 import ArticleCard from "./ArticleCard";
 import type { Article } from "@/data/articles";
@@ -8,12 +8,12 @@ interface Props {
   onArticleClick: (article: Article) => void;
 }
 
-const ArticlesSection = memo(({ searchQuery, onArticleClick }: Props) => {
+const ArticlesSection = ({ searchQuery, onArticleClick }: Props) => {
   const [activeCategory, setActiveCategory] = useState("All");
 
   const query = searchQuery.toLowerCase();
 
-  const filtered = useMemo(() => 
+  const filtered = useMemo(() =>
     articles.filter((a) => {
       const matchesCat = activeCategory === "All" || a.category === activeCategory;
       const matchesSearch =
@@ -24,10 +24,6 @@ const ArticlesSection = memo(({ searchQuery, onArticleClick }: Props) => {
       return matchesCat && matchesSearch;
     }), [activeCategory, query]
   );
-
-  const handleCategoryClick = useCallback((cat: string) => {
-    setActiveCategory(cat);
-  }, []);
 
   return (
     <section id="articles" className="py-16 md:py-24 bg-muted/50">
@@ -42,7 +38,7 @@ const ArticlesSection = memo(({ searchQuery, onArticleClick }: Props) => {
           {categories.map((cat) => (
             <button
               key={cat}
-              onClick={() => handleCategoryClick(cat)}
+              onClick={() => setActiveCategory(cat)}
               className={`px-4 py-2 rounded-full text-sm font-body font-medium transition-colors ${
                 activeCategory === cat
                   ? "bg-primary text-primary-foreground"
@@ -68,8 +64,6 @@ const ArticlesSection = memo(({ searchQuery, onArticleClick }: Props) => {
       </div>
     </section>
   );
-});
-
-ArticlesSection.displayName = "ArticlesSection";
+};
 
 export default ArticlesSection;
