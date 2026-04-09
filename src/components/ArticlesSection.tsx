@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback, useMemo, memo } from "react";
 import { articles, categories } from "@/data/articles";
 import ArticleCard from "./ArticleCard";
 import type { Article } from "@/data/articles";
@@ -8,18 +8,26 @@ interface Props {
   onArticleClick: (article: Article) => void;
 }
 
-const ArticlesSection = ({ searchQuery, onArticleClick }: Props) => {
+const ArticlesSection = memo(({ searchQuery, onArticleClick }: Props) => {
   const [activeCategory, setActiveCategory] = useState("All");
 
-  const filtered = articles.filter((a) => {
-    const matchesCat = activeCategory === "All" || a.category === activeCategory;
-    const matchesSearch =
-      !searchQuery ||
-      a.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      a.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      a.category.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCat && matchesSearch;
-  });
+  const query = searchQuery.toLowerCase();
+
+  const filtered = useMemo(() => 
+    articles.filter((a) => {
+      const matchesCat = activeCategory === "All" || a.category === activeCategory;
+      const matchesSearch =
+        !query ||
+        a.title.toLowerCase().includes(query) ||
+        a.excerpt.toLowerCase().includes(query) ||
+        a.category.toLowerCase().includes(query);
+      return matchesCat && matchesSearch;
+    }), [activeCategory, query]
+  );
+
+  const handleCategoryClick = useCallback((cat: string) => {
+    setActiveCategory(cat);
+  }, []);
 
   return (
     <section id="articles" className="py-16 md:py-24 bg-muted/50">
@@ -30,12 +38,11 @@ const ArticlesSection = ({ searchQuery, onArticleClick }: Props) => {
           </h2>
         </div>
 
-        {/* Category Filter */}
         <div className="flex flex-wrap justify-center gap-2 mb-10">
           {categories.map((cat) => (
             <button
               key={cat}
-              onClick={() => setActiveCategory(cat)}
+              onClick={() => handleCategoryClick(cat)}
               className={`px-4 py-2 rounded-full text-sm font-body font-medium transition-colors ${
                 activeCategory === cat
                   ? "bg-primary text-primary-foreground"
@@ -61,6 +68,8 @@ const ArticlesSection = ({ searchQuery, onArticleClick }: Props) => {
       </div>
     </section>
   );
-};
+});
+
+ArticlesSection.displayName = "ArticlesSection";
 
 export default ArticlesSection;

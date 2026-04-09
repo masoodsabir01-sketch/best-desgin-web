@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Clock, Calendar } from "lucide-react";
 import type { Article } from "@/data/articles";
 
@@ -6,7 +7,7 @@ interface Props {
   onClick: (article: Article) => void;
 }
 
-const ArticleCard = ({ article, onClick }: Props) => (
+const ArticleCard = memo(({ article, onClick }: Props) => (
   <article
     className="group bg-card rounded-xl overflow-hidden shadow-sm border border-border craft-card-hover cursor-pointer"
     onClick={() => onClick(article)}
@@ -19,6 +20,7 @@ const ArticleCard = ({ article, onClick }: Props) => (
         src={article.image}
         alt={article.title}
         loading="lazy"
+        decoding="async"
         width={640}
         height={512}
         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -44,6 +46,8 @@ const ArticleCard = ({ article, onClick }: Props) => (
       </div>
     </div>
   </article>
-);
+));
+
+ArticleCard.displayName = "ArticleCard";
 
 export default ArticleCard;
