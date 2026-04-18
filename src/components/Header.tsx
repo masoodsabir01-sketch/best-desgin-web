@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Search, Menu, X, ChevronDown } from "lucide-react";
+import { Search, Menu, X, ChevronDown, Sun, Moon } from "lucide-react";
 
 interface HeaderProps {
   onSearchOpen: () => void;
@@ -48,12 +48,22 @@ const Header = ({ onSearchOpen }: HeaderProps) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [isDark, setIsDark] = useState(() =>
+    typeof window !== "undefined" &&
+    (localStorage.getItem("theme") === "dark" ||
+      (!localStorage.getItem("theme") && window.matchMedia("(prefers-color-scheme: dark)").matches))
+  );
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handler);
     return () => window.removeEventListener("scroll", handler);
   }, []);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", isDark);
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+  }, [isDark]);
 
   return (
     <header
@@ -104,6 +114,13 @@ const Header = ({ onSearchOpen }: HeaderProps) => {
 
         {/* Right Actions */}
         <div className="flex items-center gap-2">
+          <button
+            onClick={() => setIsDark(!isDark)}
+            className="p-2 rounded-full hover:bg-muted transition-colors text-foreground/70 hover:text-primary"
+            aria-label="Toggle theme"
+          >
+            {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+          </button>
           <button
             onClick={onSearchOpen}
             className="p-2 rounded-full hover:bg-muted transition-colors text-foreground/70 hover:text-primary"
