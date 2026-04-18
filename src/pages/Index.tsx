@@ -18,7 +18,6 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Header onSearchOpen={() => setSearchOpen(true)} />
       <main>
-        <HeroSection />
         <CategoryCards />
         <EventsSection />
         <ArticlesSection searchQuery={searchQuery} onArticleClick={(a) => setSelectedArticle(a)} />
