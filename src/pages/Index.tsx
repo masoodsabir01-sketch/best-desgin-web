@@ -19,7 +19,7 @@ const Index = () => {
       <Header onSearchOpen={() => setSearchOpen(true)} />
       <main>
         <CategoryCards />
-        <EventsSection />
+        
         <ArticlesSection searchQuery={searchQuery} onArticleClick={(a) => setSelectedArticle(a)} />
       </main>
       <Footer />
