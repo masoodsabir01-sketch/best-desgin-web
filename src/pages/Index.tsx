@@ -2,7 +2,7 @@ import { useState } from "react";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import CategoryCards from "@/components/CategoryCards";
-import EventsSection from "@/components/EventsSection";
+
 import ArticlesSection from "@/components/ArticlesSection";
 import SearchOverlay from "@/components/SearchOverlay";
 import ArticleModal from "@/components/ArticleModal";
@@ -19,7 +19,7 @@ const Index = () => {
       <Header onSearchOpen={() => setSearchOpen(true)} />
       <main>
         <CategoryCards />
-        <EventsSection />
+        
         <ArticlesSection searchQuery={searchQuery} onArticleClick={(a) => setSelectedArticle(a)} />
       </main>
       <Footer />
