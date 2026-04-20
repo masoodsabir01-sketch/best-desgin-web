@@ -3,6 +3,7 @@ import { ArrowLeft, Calendar, Clock, User, Share2 } from "lucide-react";
 import type { Article } from "@/data/articles";
 import { articles } from "@/data/articles";
 import ArticleCard from "./ArticleCard";
+import Header from "./Header";
 
 interface Props {
   article: Article;
