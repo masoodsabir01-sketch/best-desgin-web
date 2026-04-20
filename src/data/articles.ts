@@ -16,6 +16,7 @@ export interface Article {
   readTime: string;
   author: string;
   content: string;
+  tags: string[];
 }
 
 export const articles: Article[] = [
