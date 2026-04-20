@@ -16,6 +16,7 @@ export interface Article {
   readTime: string;
   author: string;
   content: string;
+  tags: string[];
 }
 
 export const articles: Article[] = [
@@ -29,6 +30,7 @@ export const articles: Article[] = [
     date: "April 5, 2026",
     readTime: "8 min read",
     author: "Crafted Wizard",
+    tags: ["clay", "polymer clay", "beginners", "crafts", "claynails", "diy"],
     content: `<h2>Getting Started with Polymer Clay</h2>
 <p>Polymer clay is one of the most versatile and forgiving craft materials out there. Whether you're a complete beginner or someone looking to try a new creative outlet, clay crafting offers endless possibilities for making beautiful, personalized pieces.</p>
 <p>The best part? You don't need expensive tools or years of experience. Most of these projects can be completed with just your hands, a rolling pin, and a home oven for baking.</p>
@@ -57,6 +59,7 @@ export const articles: Article[] = [
     date: "March 28, 2026",
     readTime: "10 min read",
     author: "Crafted Wizard",
+    tags: ["costume", "rainbow dash", "diy", "cosplay", "halloween", "costumes"],
     content: `<h2>Bringing Rainbow Dash to Life</h2>
 <p>Rainbow Dash is one of the most beloved characters for costume lovers of all ages. The vibrant rainbow mane and tail, paired with those signature wings, make for a showstopping outfit that's surprisingly easy to DIY.</p>
 <p>This step-by-step guide walks you through creating every element of the costume using affordable craft supplies and clever techniques.</p>
@@ -83,6 +86,7 @@ export const articles: Article[] = [
     date: "March 20, 2026",
     readTime: "12 min read",
     author: "Crafted Wizard",
+    tags: ["mehndi", "mehndidesign", "henna", "diy", "hands", "bridal"],
     content: `<h2>The Art of Mehndi Design</h2>
 <p>Mehndi, or henna art, has been a cherished tradition for centuries across many cultures. Today, it has evolved into a beautiful form of temporary body art that blends traditional motifs with contemporary aesthetics.</p>
 <p>Whether you're preparing for a wedding, festival, or simply want to adorn your hands with beautiful art, this collection of designs offers something for everyone.</p>
@@ -107,6 +111,7 @@ export const articles: Article[] = [
     date: "March 15,  2026",
     readTime: "7 min read",
     author: "Crafted Wizard",
+    tags: ["christmas", "christmasdiy", "ornaments", "decor", "holiday", "diy"],
     content: `<h2>Dollar Store Magic for the Holidays</h2>
 <p>Who says beautiful Christmas decorations have to break the bank? With a little creativity and a trip to the dollar store, you can create ornaments and décor pieces that rival expensive department store finds.</p>
 <p>These projects are perfect for crafting with kids, hosting a craft night with friends, or simply adding a personal touch to your holiday decorations.</p>
@@ -130,6 +135,7 @@ export const articles: Article[] = [
     date: "March 10, 2026",
     readTime: "9 min read",
     author: "Crafted Wizard",
+    tags: ["crochet", "bookmark", "yarn", "beginners", "crafts", "patterns"],
     content: `<h2>Why Crochet Bookmarks?</h2>
 <p>Crochet bookmarks are the perfect small project for beginners and experienced crafters alike. They work up quickly, use minimal yarn, and make wonderful handmade gifts for the book lovers in your life.</p>
 <p>Plus, they're a great way to practice new stitches and techniques without committing to a large project.</p>
@@ -154,6 +160,7 @@ export const articles: Article[] = [
     date: "March 5, 2026",
     readTime: "6 min read",
     author: "Crafted Wizard",
+    tags: ["visionboard", "diy", "goals", "manifestation", "decor", "inspiration"],
     content: `<h2>The Science Behind Vision Boards</h2>
 <p>Vision boards aren't just a trendy craft project — research in psychology suggests that visualization can genuinely help you achieve your goals. When you regularly see images and words that represent your aspirations, your brain starts to recognize opportunities aligned with those goals.</p>
 <p>The key is creating a board that resonates deeply with you, not just looks pretty on Instagram (though that's a bonus!).</p>

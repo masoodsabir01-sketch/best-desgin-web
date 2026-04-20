@@ -20,7 +20,9 @@ const ArticlesSection = ({ searchQuery, onArticleClick }: Props) => {
         !query ||
         a.title.toLowerCase().includes(query) ||
         a.excerpt.toLowerCase().includes(query) ||
-        a.category.toLowerCase().includes(query);
+        a.category.toLowerCase().includes(query) ||
+        a.author.toLowerCase().includes(query) ||
+        a.tags.some((t) => t.toLowerCase().includes(query));
       return matchesCat && matchesSearch;
     }), [activeCategory, query]
   );
