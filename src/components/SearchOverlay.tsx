@@ -66,7 +66,13 @@ const SearchOverlay = ({ isOpen, query, onQueryChange, onClose }: Props) => {
           {popularTags.map((tag) => (
             <button
               key={tag}
-              onClick={() => { onQueryChange(tag.replace("#", "")); }}
+              onClick={() => {
+                onQueryChange(tag.replace("#", ""));
+                onClose();
+                setTimeout(() => {
+                  document.getElementById("articles")?.scrollIntoView({ behavior: "smooth" });
+                }, 50);
+              }}
               className="text-xs font-body bg-secondary text-secondary-foreground px-3 py-1.5 rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
             >
               {tag}
