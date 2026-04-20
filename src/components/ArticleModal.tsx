@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { ArrowLeft, Calendar, Clock, User, Share2 } from "lucide-react";
 import type { Article } from "@/data/articles";
 import { articles } from "@/data/articles";
@@ -11,10 +11,15 @@ interface Props {
 }
 
 const ArticleModal = ({ article, onClose, onArticleClick }: Props) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     document.body.style.overflow = "hidden";
-    window.scrollTo(0, 0);
-    return () => { document.body.style.overflow = ""; };
+    window.scrollTo({ top: 0, left: 0 });
+    containerRef.current?.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [article]);
 
   const related = articles.filter((a) => a.id !== article.id).slice(0, 3);
@@ -22,8 +27,7 @@ const ArticleModal = ({ article, onClose, onArticleClick }: Props) => {
   const shareUrl = `https://craftedwizard.com/${article.slug}`;
 
   return (
-    <div className="fixed inset-0 z-[70] bg-background overflow-y-auto">
-      {/* Breadcrumb */}
+    <div ref={containerRef} className="fixed inset-0 z-[70] bg-background overflow-y-auto">
       <div className="bg-card border-b border-border sticky top-0 z-10">
         <div className="craft-container flex items-center h-14 gap-3">
           <button onClick={onClose} className="flex items-center gap-1.5 text-sm font-body text-primary hover:text-craft-pink transition-colors">
@@ -38,7 +42,6 @@ const ArticleModal = ({ article, onClose, onArticleClick }: Props) => {
 
       <main className="craft-container py-8 md:py-12">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-10">
-          {/* Main Content */}
           <article>
             <span className="inline-block bg-primary text-primary-foreground text-xs font-body font-bold px-3 py-1 rounded-full mb-4">
               {article.category}
@@ -67,7 +70,6 @@ const ArticleModal = ({ article, onClose, onArticleClick }: Props) => {
               dangerouslySetInnerHTML={{ __html: article.content }}
             />
 
-            {/* Share */}
             <div className="mt-10 pt-6 border-t border-border">
               <div className="flex items-center gap-3">
                 <Share2 className="w-4 h-4 text-muted-foreground" />
@@ -78,7 +80,6 @@ const ArticleModal = ({ article, onClose, onArticleClick }: Props) => {
               </div>
             </div>
 
-            {/* Author Bio */}
             <div className="mt-8 bg-muted rounded-xl p-6 flex items-start gap-4">
               <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-heading font-bold text-xl shrink-0">
                 CW
@@ -92,7 +93,6 @@ const ArticleModal = ({ article, onClose, onArticleClick }: Props) => {
             </div>
           </article>
 
-          {/* Sidebar */}
           <aside className="space-y-6">
             <div className="bg-card rounded-xl border border-border p-5 sticky top-20">
               <h3 className="font-heading font-bold text-foreground mb-4">Trending Articles</h3>
@@ -115,7 +115,6 @@ const ArticleModal = ({ article, onClose, onArticleClick }: Props) => {
           </aside>
         </div>
 
-        {/* Related Articles */}
         <section className="mt-16 pt-10 border-t border-border">
           <h2 className="text-2xl font-heading font-bold text-foreground mb-6">Recommended Articles</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
