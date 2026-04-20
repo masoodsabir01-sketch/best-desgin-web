@@ -29,7 +29,9 @@ const ArticleModal = ({ article, onClose, onArticleClick }: Props) => {
 
   return (
     <div ref={containerRef} className="fixed inset-0 z-[70] bg-background overflow-y-auto">
-      <div className="bg-card border-b border-border sticky top-0 z-10">
+      <Header onSearchOpen={onClose} />
+
+      <div className="bg-card border-b border-border mt-16 md:mt-20">
         <div className="craft-container flex items-center h-14 gap-3">
           <button onClick={onClose} className="flex items-center gap-1.5 text-sm font-body text-primary hover:text-craft-pink transition-colors">
             <ArrowLeft className="w-4 h-4" /> Back to Home
