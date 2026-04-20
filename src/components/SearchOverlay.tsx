@@ -44,7 +44,11 @@ const SearchOverlay = ({ isOpen, query, onQueryChange, onClose }: Props) => {
       <div className="bg-card rounded-2xl shadow-2xl w-full max-w-lg mx-4 p-6">
         <div className="flex items-center justify-between mb-4">
           <h2 className="font-heading font-bold text-foreground text-lg">Search</h2>
-          <button onClick={onClose} className="p-1.5 rounded-full hover:bg-muted text-muted-foreground" aria-label="Close search">
+          <button
+            onClick={() => { onQueryChange(""); onClose(); }}
+            className="p-1.5 rounded-full hover:bg-muted text-muted-foreground"
+            aria-label="Close search"
+          >
             <X className="w-5 h-5" />
           </button>
         </div>
