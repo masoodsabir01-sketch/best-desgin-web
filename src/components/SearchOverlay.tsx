@@ -35,8 +35,9 @@ const SearchOverlay = ({ isOpen, query, onQueryChange, onClose }: Props) => {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     onClose();
-    const el = document.getElementById("articles");
-    el?.scrollIntoView({ behavior: "smooth" });
+    requestAnimationFrame(() => {
+      document.getElementById("articles")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
   };
 
   return (

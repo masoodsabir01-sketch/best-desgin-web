@@ -1,13 +1,14 @@
-import { useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import CategoryCards from "@/components/CategoryCards";
 
 import ArticlesSection from "@/components/ArticlesSection";
-import SearchOverlay from "@/components/SearchOverlay";
-import ArticleModal from "@/components/ArticleModal";
 import Footer from "@/components/Footer";
 import type { Article } from "@/data/articles";
+
+const SearchOverlay = lazy(() => import("@/components/SearchOverlay"));
+const ArticleModal = lazy(() => import("@/components/ArticleModal"));
 
 const Index = () => {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -24,20 +25,22 @@ const Index = () => {
       </main>
       <Footer />
 
-      <SearchOverlay
-        isOpen={searchOpen}
-        query={searchQuery}
-        onQueryChange={setSearchQuery}
-        onClose={() => setSearchOpen(false)}
-      />
-
-      {selectedArticle && (
-        <ArticleModal
-          article={selectedArticle}
-          onClose={() => setSelectedArticle(null)}
-          onArticleClick={(a) => setSelectedArticle(a)}
+      <Suspense fallback={null}>
+        <SearchOverlay
+          isOpen={searchOpen}
+          query={searchQuery}
+          onQueryChange={setSearchQuery}
+          onClose={() => setSearchOpen(false)}
         />
-      )}
+
+        {selectedArticle && (
+          <ArticleModal
+            article={selectedArticle}
+            onClose={() => setSelectedArticle(null)}
+            onArticleClick={(a) => setSelectedArticle(a)}
+          />
+        )}
+      </Suspense>
     </div>
   );
 };

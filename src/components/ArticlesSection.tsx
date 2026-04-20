@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { articles, categories } from "@/data/articles";
 import ArticleCard from "./ArticleCard";
 import type { Article } from "@/data/articles";
@@ -11,24 +11,34 @@ interface Props {
 const ArticlesSection = ({ searchQuery, onArticleClick }: Props) => {
   const [activeCategory, setActiveCategory] = useState("All");
 
-  const query = searchQuery.toLowerCase();
+  const query = searchQuery.trim().toLowerCase().replace(/^#/, "");
 
-  const filtered = useMemo(() =>
-    articles.filter((a) => {
-      const matchesCat = activeCategory === "All" || a.category === activeCategory;
-      const matchesSearch =
-        !query ||
-        a.title.toLowerCase().includes(query) ||
-        a.excerpt.toLowerCase().includes(query) ||
-        a.category.toLowerCase().includes(query) ||
-        a.author.toLowerCase().includes(query) ||
-        a.tags.some((t) => t.toLowerCase().includes(query));
-      return matchesCat && matchesSearch;
-    }), [activeCategory, query]
+  useEffect(() => {
+    if (query) {
+      setActiveCategory("All");
+    }
+  }, [query]);
+
+  const filtered = useMemo(
+    () =>
+      articles.filter((a) => {
+        const matchesCat = activeCategory === "All" || a.category === activeCategory;
+        const matchesSearch =
+          !query ||
+          a.title.toLowerCase().includes(query) ||
+          a.excerpt.toLowerCase().includes(query) ||
+          a.category.toLowerCase().includes(query) ||
+          a.author.toLowerCase().includes(query) ||
+          a.slug.toLowerCase().includes(query) ||
+          a.tags.some((t) => t.toLowerCase().includes(query));
+
+        return matchesCat && matchesSearch;
+      }),
+    [activeCategory, query]
   );
 
   return (
-    <section id="articles" className="py-16 md:py-24 bg-muted/50">
+    <section id="articles" className="scroll-mt-24 py-16 md:py-24 bg-muted/50">
       <div className="craft-container">
         <div className="text-center mb-10">
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-3">
